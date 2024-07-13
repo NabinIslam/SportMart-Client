@@ -11,7 +11,7 @@ import {
 } from './ui/select';
 import { TBrand, TCategory } from '@/types';
 import Rating from 'react-rating';
-import { FaRegStar, FaStar, FaUpload } from 'react-icons/fa6';
+import { FaStar, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Button } from './ui/button';
@@ -158,7 +158,7 @@ const AddProductForm = ({
           <Rating
             onClick={(value: number) => setRating(value)}
             className="text-3xl text-primary"
-            emptySymbol={<FaRegStar />}
+        
             placeholderSymbol={<FaStar />}
             fullSymbol={<FaStar />}
           />
