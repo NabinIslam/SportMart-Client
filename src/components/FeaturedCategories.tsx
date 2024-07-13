@@ -13,7 +13,7 @@ import { IoBaseballSharp } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 const FeaturedCategories = () => {
-  const { data } = useGetAllCategoriesQuery({});
+  const { data, isLoading } = useGetAllCategoriesQuery({});
 
   const iconMapping: TIconMapping = {
     Soccer: (
@@ -50,22 +50,26 @@ const FeaturedCategories = () => {
           Get Your Desired Product from Featured Category!
         </p>
 
-        <div className="mt-10 max-w-lg mx-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-10">
-          {data?.data?.map((category: TCategory) => (
-            <Link
-              className="group hover:scale-125 duration-300"
-              to="/products"
-              key={category._id}
-            >
-              <div className="size-20 flex flex-col items-center gap-2">
-                {iconMapping[category.name]}
-                <span className="font-semibold group-hover:text-primary duration-200">
-                  {category.name}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {isLoading ? (
+          'Loading categories...'
+        ) : (
+          <div className="mt-10 max-w-lg mx-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-10">
+            {data?.data?.map((category: TCategory) => (
+              <Link
+                className="group hover:scale-125 duration-300"
+                to="/products"
+                key={category._id}
+              >
+                <div className="size-20 flex flex-col items-center gap-2">
+                  {iconMapping[category.name]}
+                  <span className="font-semibold group-hover:text-primary duration-200">
+                    {category.name}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
